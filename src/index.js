@@ -25,31 +25,61 @@ window.addEventListener('load', () => {
     $id.focus()
 })
 
-const IdFormEvent = (e) => {
-    if (e.target.value.length === 0) {
-        $idMsg.innerHTML = ERROR_MSG.required
-        console.log(($id.classList.add = 'border-red-600'))
-    } else if (ID_REGEX.test(e.target.value) === false) {
-        $idMsg.innerHTML = ERROR_MSG.invalidId
-        $id.classList.add('border-red-600')
+const FormEvent = ($target, message) => {
+    console.log('$target:', $target, 'value:', value)
+    if ($target.value.length === 0) {
+        message.innerHTML = ERROR_MSG.required
+        $target.classList.add('border-red-600')
+    } else if (ID_REGEX.test($target.value) === false) {
+        message.innerHTML = ERROR_MSG.invalidId
+        $target.classList.add('border-red-600')
+    } else if (PW_REGEX.test($target.value) === false) {
+        message.innerHTML = ERROR_MSG.invalidPw
+        $target.classList.add('border-red-600')
     } else {
         $id.classList.remove('border-red-600')
         $idMsg.innerHTML = ''
     }
+
+    // switch(x) {
+    //   case 'value1':  // if (x === 'value1')
+    //     ...
+    //     [break]
+
+    //   case 'value2':  // if (x === 'value2')
+    //     ...
+    //     [break]
+
+    //   default:
+    //     ...
+    //     [break]
+    // }
 }
 
-const PwFormEvent = (e) => {
-    if (e.target.value.length === 0) {
-        $pwMsg.innerHTML = ERROR_MSG.required
-        console.log(($pw.classList.add = 'border-red-600'))
-    } else if (PW_REGEX.test(e.target.value) === false) {
-        $pwMsg.innerHTML = ERROR_MSG.invalidId
-        $pw.classList.add('border-red-600')
-    } else {
-        $pw.classList.remove('border-red-600')
-        $pwMsg.innerHTML = ''
-    }
-}
+// const idFormEvent = (e) => {
+//     if (e.target.value.length === 0) {
+//         $idMsg.innerHTML = ERROR_MSG.required
+//     } else if (ID_REGEX.test(e.target.value) === false) {
+//         $idMsg.innerHTML = ERROR_MSG.invalidId
+//         $id.classList.add('border-red-600')
+//     } else {
+//         $id.classList.remove('border-red-600')
+//         $idMsg.innerHTML = ''
+//     }
+// }
+
+// const pwFormEvent = (e) => {
+//     if (e.target.value.length === 0) {
+//         $pwMsg.innerHTML = ERROR_MSG.required
+//         console.log(($pw.classList.add = 'border-red-600'))
+//     } else if (PW_REGEX.test(e.target.value) === false) {
+//         $pwMsg.innerHTML = ERROR_MSG.invalidId
+//         $pw.classList.add('border-red-600')
+//     } else {
+//         $pw.classList.remove('border-red-600')
+//         $pwMsg.innerHTML = ''
+//     }
+// }
 
 const checkPwEvent = (e) => {
     if ($pw.value === e.target.value) {
@@ -94,9 +124,16 @@ const openModal = () => {
 
 // 2. 유효성 검사 로직 : ID, 비밀번호, 비밀번호 확인 필드에 대한 유효성 검사를 수행해야 합니다.
 // 유효성 검사 시점 : input focus out 시 해당 input의 유효성을 검사합니다.
-$id.addEventListener('focusout', IdFormEvent)
-$pw.addEventListener('focusout', PwFormEvent)
-$pwCheck.addEventListener('focusout', checkPwEvent)
+$id.addEventListener('focusout', () => {
+    FormEvent($id, $idMsg)
+})
+$pw.addEventListener('focusout', () => {
+    FormEvent($pw, $pwMsg)
+})
+
+// $id.addEventListener('focusout', idFormEvent)
+// $pw.addEventListener('focusout', pwFormEvent)
+// $pwCheck.addEventListener('focusout', checkPwEvent)
 
 // 3.가입하기 버튼을 눌렀을 때 모든 필드의 유효성을 검사합니다.
 // 제출하기 버튼 클릭 시, 모든 input의 값이 유효한 상태일 경우 입력한 아이디와 비밀번호를 확인할 수 있는 모달 창을 보여주어야 합니다.
