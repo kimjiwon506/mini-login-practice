@@ -73,7 +73,7 @@ const checkValidFormEvent = (e) => {
 // 4. 입력 확인 모달 창
 const openModal = () => {
     // "취소하기" 버튼 클릭 시 모달 창이 닫혀야 합니다.
-    // "가입하기" 버튼 클릭 시 윈도우의 alert 창을 이용해 "가입되었습니다 🥳 " 라는 메시지를 출력해야 합니다.
+    // "가입하기" 버튼 클릭 시 윈도우의 alert 창에 메세지 띄우기
     $modal.showModal()
     const confirmID = document.getElementById('confirm-id')
     const confirmPw = document.getElementById('confirm-pw')
@@ -87,7 +87,7 @@ const openModal = () => {
         $modal.close()
     })
     approveBtn.addEventListener('click', () => {
-        alert('가입되셨습니다.')
+        alert('가입되었습니다 🥳 ')
         $modal.close()
     })
 }
