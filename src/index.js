@@ -20,39 +20,39 @@ const ERROR_MSG = {
     invalidPwCheck: '비밀번호가 일치하지 않습니다.',
 }
 
-// 1. autofocus 페이지가 로드 된 시점에 ID 입력 창에 Focus가 되어 있어야 합니다.
+// 1. autofocus 페이지가 로드 된 시점에 ID 입력 창에 Focus
 window.addEventListener('load', () => {
     $id.focus()
 })
 
-const FormEvent = ($target, message) => {
-    console.log('$target:', $target, 'value:', value)
-    if ($target.value.length === 0) {
-        message.innerHTML = ERROR_MSG.required
-        $target.classList.add('border-red-600')
-    } else if (ID_REGEX.test($target.value) === false) {
-        message.innerHTML = ERROR_MSG.invalidId
-        $target.classList.add('border-red-600')
-    } else if (PW_REGEX.test($target.value) === false) {
-        message.innerHTML = ERROR_MSG.invalidPw
-        $target.classList.add('border-red-600')
-    } else {
-        $id.classList.remove('border-red-600')
-        $idMsg.innerHTML = ''
-    }
+// checkRegex기능 formValidCheck기능
+//const validCheck = checkRegex($target);
+//message.innerText = ERROR_MSG.required;
 
-    // switch(x) {
-    //   case 'value1':  // if (x === 'value1')
-    //     ...
-    //     [break]
+// const showErrorMessage = ($message, errorMessage) => {
+//     console.log($message, errorMessage)
+//     $message.innerHTML = errorMessage
+//     $target.classList.add('border-red-600')
+// }
 
-    //   case 'value2':  // if (x === 'value2')
-    //     ...
-    //     [break]
-
-    //   default:
-    //     ...
-    //     [break]
+const FormEvent = ($target, $message) => {
+    console.log('$target:', $target, '$messag:', $message)
+    // if (isValid($target)) {
+    //     $id.classList.remove('border-red-600')
+    //     $idMsg.innerHTML = ''
+    // } else {
+    //     $id.classList.add('border-red-600')
+    //     $idMsg.innerHTML = 'invalid'
+    // }
+    // if ($target.value.length === 0) {
+    //     showErrorMessage(ERROR_MSG.required)
+    // } else if (ID_REGEX.test($target.value) === false) {
+    //     showErrorMessage(ERROR_MSG.invalidId)
+    // } else if (PW_REGEX.test($target.value) === false) {
+    //     showErrorMessage(ERROR_MSG.invalidPw)
+    // } else {
+    //     $id.classList.remove('border-red-600')
+    //     $idMsg.innerHTML = ''
     // }
 }
 
@@ -127,9 +127,9 @@ const openModal = () => {
 $id.addEventListener('focusout', () => {
     FormEvent($id, $idMsg)
 })
-$pw.addEventListener('focusout', () => {
-    FormEvent($pw, $pwMsg)
-})
+// $pw.addEventListener('focusout', () => {
+//     FormEvent($pw, $pwMsg)
+// })
 
 // $id.addEventListener('focusout', idFormEvent)
 // $pw.addEventListener('focusout', pwFormEvent)
