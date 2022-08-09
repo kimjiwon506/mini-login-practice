@@ -40,6 +40,6 @@ const formValidCheck = (target, targetMsg) => {
 
 </code></pre>
 
-<img width="400" src="[{이미지 경로}](https://user-images.githubusercontent.com/100064790/183582762-8055594e-a7c2-4f11-866f-da58ca043463.png)"/>
+<img width="400" src="https://user-images.githubusercontent.com/100064790/183582762-8055594e-a7c2-4f11-866f-da58ca043463.png"/>
 
 
